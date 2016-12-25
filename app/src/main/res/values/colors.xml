@@ -4,5 +4,7 @@
 
     <color name="primaryColor">#e42526</color>
     <color name="primaryDarkColor">#ba2025</color>
-    <color name="accentColor">#FAD317</color>
+    <color name="accentColor">#FFF</color>
+
+    <color name="secondaryAccentColor">#FAD317</color>
 </resources>

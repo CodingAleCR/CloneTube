@@ -1,6 +1,7 @@
 package info.codingalecr.clonetube.view.adapter;
 
 import android.content.Context;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,19 +25,19 @@ import info.codingalecr.clonetube.model.Video;
 /**
  * Created by Alejandro on 12/23/2016.
  */
-public class ListAdapter extends BaseAdapter {
+public class ListaVideoAdapter extends BaseAdapter {
 
     private final Context mContext;
     private List<Video> items;
     private int mLayout;
 
-    public ListAdapter(Context c, int layout, List<Video> items) {
+    public ListaVideoAdapter(Context c, int layout, List<Video> items) {
         mContext = c;
         this.items = items;
         this.mLayout = layout;
     }
 
-    public ListAdapter(Context c, int layout) {
+    public ListaVideoAdapter(Context c, int layout) {
         mContext = c;
         this.mLayout = layout;
         getDummyContent();
@@ -44,10 +45,10 @@ public class ListAdapter extends BaseAdapter {
 
     private void getDummyContent() {
         this.items =  new ArrayList<Video>();
-        Canal c1 = new Canal("Canalero01", R.drawable.account, 55000, "Federico L");
-        Canal c2 = new Canal("JulianJuega", R.drawable.account, 55000, "JJulian");
-        Canal c3 = new Canal("ESPN", R.drawable.account, 55000, "ESPN Network");
-        Canal c4 = new Canal("NBA", R.drawable.account, 55000, "NBA");
+        Canal c1 = new Canal("Canalero01", R.drawable.ic_account_circle_black_18dp, 55000, "Federico L");
+        Canal c2 = new Canal("JulianJuega", R.drawable.ic_account_circle_black_18dp, 25000, "JJulian");
+        Canal c3 = new Canal("ESPN", R.drawable.ic_account_circle_black_18dp, 1500, "ESPN Network");
+        Canal c4 = new Canal("NBA", R.drawable.ic_account_circle_black_18dp, 155000, "NBA");
 
         Comentario[] comentarios = new Comentario[6];
         comentarios[0] = new Comentario("Hola mundo", new Date(), "Marcos");
@@ -57,22 +58,33 @@ public class ListAdapter extends BaseAdapter {
         comentarios[4] = new Comentario("Que bueno encontrar este tipo de herramientas", new Date(), "MartaCanta");
         comentarios[5] = new Comentario("Help me!", new Date(), "Estebannnn");
 
-        String dateString = "03/26/2012 11:49:00 AM";
+        String[] dateStrings = new String[6];
+        dateStrings[0] = "12/24/2016 11:49:00 AM";
+        dateStrings[1] = "12/20/2016 11:49:00 AM";
+        dateStrings[2] = "10/24/2016 11:49:00 AM";
+        dateStrings[3] = "12/25/2016 11:49:00 AM";
+        dateStrings[4] = "12/26/2016 11:49:00 AM";
+        dateStrings[5] = "12/26/2016 11:49:00 AM";
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa");
-        Date convertedDate = new Date();
+        Date[] convertedDates = new Date[6];
         try {
-            convertedDate = dateFormat.parse(dateString);
+            convertedDates[0] = dateFormat.parse(dateStrings[0]);
+            convertedDates[1] = dateFormat.parse(dateStrings[1]);
+            convertedDates[2] = dateFormat.parse(dateStrings[2]);
+            convertedDates[3] = dateFormat.parse(dateStrings[3]);
+            convertedDates[4] = dateFormat.parse(dateStrings[4]);
+            convertedDates[5] = dateFormat.parse(dateStrings[5]);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        items.add(new Video(c2, "Comedia", comentarios, "Este es mi primer video de ejemplo, espero os guste!", convertedDate, "744896321", R.drawable.fire, "MIT", "Hello Mundo!", 100, 2, 5));
-        items.add(new Video(c1, "Deportes", comentarios, "Mira esta atrapada, es increible lo que logr hacer!", convertedDate, "786+9443", R.drawable.fire, "MIT", "Mira esta atrapada!", 100, 2, 5));
-        items.add(new Video(c3, "Drama", comentarios, "Y si el mundo termina", convertedDate, "876786767", R.drawable.fire, "MIT", "Y si el mundo termina!", 100, 7, 21));
-        items.add(new Video(c3, "Drama", comentarios, "Tienes que ver esto!", convertedDate, "435555545", R.drawable.fire, "MIT", "Tienes que ver esto!", 100, 42, 55));
-        items.add(new Video(c4, "Musica", comentarios, "POP MUSIC MIX 2016", convertedDate, "423497799", R.drawable.fire, "MIT", "POP MUSIC MIX 2016!", 1000, 12, 50));
-        items.add(new Video(c2, "Comedia", comentarios, "No le mola la rocola", convertedDate, "763243777", R.drawable.fire, "MIT", "No le mola la rocola!", 10000, 20, 500));
-        items.add(new Video(c4, "Musica", comentarios, "Greatest Hits 1970s", convertedDate, "123745678", R.drawable.fire, "MIT", "Greatest Hits 1970s!", 250, 13, 75));
+        items.add(new Video(c2, "Comedia", comentarios, "Este es mi primer video de ejemplo, espero os guste!", convertedDates[0], "744896321", "https://goo.gl/mgwoHf", "MIT", "Hello Mundo!", 100, 2, 5));
+        items.add(new Video(c1, "Deportes", comentarios, "Mira esta atrapada, es increible lo que logr hacer!", convertedDates[0], "786+9443", "https://goo.gl/ccgW4i", "MIT", "Mira esta atrapada!", 100, 2, 5));
+        items.add(new Video(c3, "Drama", comentarios, "Y si el mundo termina", convertedDates[1], "876786767", "https://goo.gl/JNIJXa", "MIT", "Y si el mundo termina!", 100, 7, 21));
+        items.add(new Video(c3, "Drama", comentarios, "Tienes que ver esto!", convertedDates[2], "435555545", "https://goo.gl/MUay9i", "MIT", "Tienes que ver esto!", 100, 42, 55));
+        items.add(new Video(c4, "Musica", comentarios, "BEST DUNKS OF 2016", convertedDates[3], "423497799", "https://goo.gl/LcvFZ1", "MIT", "DUNK MIX 2016!", 1000, 12, 50));
+        items.add(new Video(c2, "Comedia", comentarios, "No le mola la rocola", convertedDates[4], "763243777", "https://goo.gl/rRMH7Y", "MIT", "No le mola la rocola!", 10000, 20, 500));
+        items.add(new Video(c4, "Musica", comentarios, "Greatest Hits 1970s", convertedDates[5], "123745678", "https://goo.gl/lHu1YN", "MIT", "Greatest Hits 1970s!", 250, 13, 75));
     }
 
     @Override
@@ -98,7 +110,7 @@ public class ListAdapter extends BaseAdapter {
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) mContext
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.grid_item, viewGroup, false);
+            view = inflater.inflate(R.layout.video_item, viewGroup, false);
         }
 
         Video item = getItem(position);
@@ -109,6 +121,7 @@ public class ListAdapter extends BaseAdapter {
 
         // Seteando Imagen del canal
         ImageView imagenCanal = (ImageView) view.findViewById(R.id.canal);
+
         Glide.with(imagenCanal.getContext()).load(item.getCanal().getIdImagen()).into(imagenCanal);
 
         // Seteando Titulo
@@ -121,13 +134,12 @@ public class ListAdapter extends BaseAdapter {
 
         // Seteando Vistas
         TextView vistas = (TextView) view.findViewById(R.id.vistas);
-        vistas.setText(item.getVistas());
+        vistas.setText(item.getVistas()+" vistas");
 
         // Seteando Vistas
         TextView tiempo = (TextView) view.findViewById(R.id.tiempoSubido);
-        Date now = new Date();
-        tiempo.setText(item.getFechaSubida().compareTo(now));
-
+        long now = System.currentTimeMillis();
+        tiempo.setText(DateUtils.getRelativeTimeSpanString(item.getFechaSubida().getTime(), now, DateUtils.MINUTE_IN_MILLIS));
         return view;
     }
 }

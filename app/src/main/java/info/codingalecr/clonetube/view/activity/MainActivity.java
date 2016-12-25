@@ -31,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
         // Preparar las pestañas
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
 
-        tabs.addTab(tabs.newTab().setIcon(R.drawable.ic_home_black_24dp));
-        tabs.addTab(tabs.newTab().setIcon(R.drawable.ic_fire_black_24dp));
-        tabs.addTab(tabs.newTab().setIcon(R.drawable.ic_youtube_play_black_24dp));
-        tabs.addTab(tabs.newTab().setIcon(R.drawable.ic_account_black_24dp));
+        tabs.addTab(tabs.newTab().setIcon(R.drawable.home));
+        tabs.addTab(tabs.newTab().setIcon(R.drawable.fire));
+        tabs.addTab(tabs.newTab().setIcon(R.drawable.youtube_play));
+        tabs.addTab(tabs.newTab().setIcon(R.drawable.account));
 
         tabs.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -44,6 +44,12 @@ public class MainActivity extends AppCompatActivity {
         tabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                if (tab.getPosition() != 0) {
+                    findViewById(R.id.fab).setVisibility(View.GONE);
+                } else {
+                    findViewById(R.id.fab).setVisibility(View.VISIBLE);
+                }
+
                 mViewPager.setCurrentItem(tab.getPosition());
             }
 
@@ -105,5 +111,32 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onFabClick(View v) {
         showSnackBar("Subir un video mediante este botón...");
+    }
+
+    /**
+     * Método onClick() del boton de busqueda
+     *
+     * @param view
+     */
+    public void onSearchClick(View view) {
+        showSnackBar("Mediante este boton podrias buscar diferentes videos...");
+    }
+
+    /**
+     * Método onClick() del boton de configuracion
+     *
+     * @param view
+     */
+    public void onSettingsClick(View view) {
+        showSnackBar("Mediante este boton podrias seleccionar las opciones de configuracion...");
+    }
+
+    /**
+     * Método onClick() del boton de opciones en video
+     *
+     * @param v
+     */
+    public void showPopup(View v) {
+        showSnackBar("Aqui se mostrarian opciones para el usuario.");
     }
 }

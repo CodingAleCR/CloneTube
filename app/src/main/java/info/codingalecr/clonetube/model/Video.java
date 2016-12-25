@@ -30,7 +30,7 @@ public class Video {
     /**
      * Imagen enlazada de thumbnail
      */
-    private int imagen;
+    private String imagen;
 
     /**
      * Categoria del video
@@ -71,7 +71,7 @@ public class Video {
         fechaSubida = new Date();
     }
 
-    public Video(Canal canal, String categoria, Comentario[] comentarios, String descripcion, Date fechaSubida, String idVideo, int imagen, String licencia, String titulo, int vistas, int votosDesfavorables, int votosFavorables) {
+    public Video(Canal canal, String categoria, Comentario[] comentarios, String descripcion, Date fechaSubida, String idVideo, String imagen, String licencia, String titulo, int vistas, int votosDesfavorables, int votosFavorables) {
         this.canal = canal;
         this.categoria = categoria;
         this.comentarios = comentarios;
@@ -126,11 +126,11 @@ public class Video {
         this.idVideo = idVideo;
     }
 
-    public int getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(int imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
