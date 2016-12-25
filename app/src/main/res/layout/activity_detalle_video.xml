@@ -39,42 +39,150 @@
 
                     <TextView
                         android:id="@+id/titulo"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Titulo"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:layout_alignParentTop="true" />
 
+                    <ImageView
+                        android:id="@+id/dropButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/ic_arrow_down_drop_circle_grey600_18dp"
+                        android:onClick="onDropClick"/>
+
                     <TextView
                         android:id="@+id/vistas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/card_margin"
                         android:text="Vistas"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:textSize="@dimen/grid_item_text_size"
                         android:layout_below="@id/titulo" />
 
-                    <TextView
-                        android:id="@+id/tiempoSubido"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tiempo"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:textSize="@dimen/grid_item_text_size"
-                        android:layout_below="@id/vistas" />
-
                     <RelativeLayout
+                        android:id="@+id/detallesVideo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tiempoSubido"
+                        android:layout_below="@id/vistas"
                         android:visibility="gone">
+
                         <TextView
+                            android:id="@+id/tiempoSubido"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tiempo"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textSize="@dimen/grid_item_text_size"/>
+
+                        <TextView
+                            android:id="@+id/descripcionVideo"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="Descripcion y demas"
+                            android:layout_below="@id/tiempoSubido"
                             />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/descripcionVideo">
+
+                            <TextView
+                                android:id="@+id/tituloActor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Actor"
+                                android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                            <TextView
+                                android:id="@+id/tituloCategoria"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tituloActor"
+                                android:text="Categoria"
+                                android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                            <TextView
+                                android:id="@+id/tituloLicencia"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tituloCategoria"
+                                android:text="Licencia"
+                                android:textAppearance="@android:style/TextAppearance.Medium" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Actor"
+                                android:layout_alignParentTop="true"
+                                android:layout_toEndOf="@+id/tituloCategoria"
+                                android:layout_marginStart="25dp"
+                                android:id="@+id/actor" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Categoria"
+                                android:layout_above="@+id/tituloLicencia"
+                                android:layout_alignStart="@+id/actor"
+                                android:id="@+id/categoria" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Licencia"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignStart="@+id/categoria"
+                                android:id="@+id/licencia" />
+
+                        </RelativeLayout>
                     </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/detallesVideo"
+                        android:layout_alignParentBottom="true"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_thumb_up_grey600_24dp"
+                            android:onClick="onThumbUpClick"
+                            android:contentDescription="Me gusta el video"/>
+                        <TextView
+                            android:id="@+id/votosFavorables"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="###"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="No me gusta el video"
+                            android:src="@drawable/ic_thumb_down_grey600_24dp"
+                            android:layout_marginLeft="10dp"
+                            android:onClick="onThumbDownClick"/>
+                        <TextView
+                            android:id="@+id/votosDesfavorables"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="###"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/reply"
+                            android:scaleX="-1"
+                            android:onClick="onCompartirClick"
+                            />
+                    </LinearLayout>
 
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
@@ -90,12 +198,13 @@
                     android:layout_marginBottom="@dimen/card_margin"
                     android:layout_marginLeft="@dimen/card_margin"
                     android:layout_marginRight="@dimen/card_margin"
-                    android:layout_marginTop="@dimen/card_margin">
+                    android:layout_marginTop="@dimen/card_margin"
+                    android:onClick="onCanalClick">
 
                     <com.mikhaellopez.circularimageview.CircularImageView
                         android:id="@+id/canal"
-                        android:layout_width="75dp"
-                        android:layout_height="75dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginBottom="@dimen/card_margin"
                         android:layout_marginRight="@dimen/card_margin"
                         android:layout_marginTop="@dimen/card_margin"
@@ -106,9 +215,45 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nombre de Canal"
-                        android:textAppearance="@android:style/TextAppearance.Large"
+                        android:textAppearance="@android:style/TextAppearance.Medium"
                         android:layout_alignTop="@+id/canal"
                         android:layout_toEndOf="@+id/canal" />
+
+                    <TextView
+                        android:id="@+id/subscripciones"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cantidad Subscripciones"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="@dimen/grid_item_text_size"
+                        android:layout_below="@id/nombreCanal"
+                        android:layout_toEndOf="@+id/canal"/>
+
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:onClick="onSubscribeClick"
+                        android:layout_below="@+id/nombreCanal"
+                        android:layout_alignParentEnd="true">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/imagenSubscribir"
+                            android:src="@drawable/ic_youtube_play_grey600_18dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:text="Subscribirse"
+                            android:id="@+id/linkSubscribir"
+                            android:textColor="@color/primaryColor"
+                            android:layout_alignBottom="@+id/imagenSubscribir"
+                            android:layout_toEndOf="@+id/imagenSubscribir" />
+                    </RelativeLayout>
 
                 </RelativeLayout>
             </android.support.v7.widget.CardView>

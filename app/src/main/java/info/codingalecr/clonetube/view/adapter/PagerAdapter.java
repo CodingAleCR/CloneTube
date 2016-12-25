@@ -26,6 +26,18 @@ public class PagerAdapter extends FragmentStatePagerAdapter{
                 HomeTabFragment home = new HomeTabFragment();
                 return home;
 
+            case 1:
+                DefaultTabFragment trend = new DefaultTabFragment();
+                return trend;
+
+            case 2:
+                DefaultTabFragment subs = new DefaultTabFragment();
+                return subs;
+
+            case 3:
+                DefaultTabFragment profile = new DefaultTabFragment();
+                return profile;
+
             default:
                 DefaultTabFragment defecto = new DefaultTabFragment();
                 return defecto;

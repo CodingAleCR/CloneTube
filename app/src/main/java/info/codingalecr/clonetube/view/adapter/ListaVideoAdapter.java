@@ -45,10 +45,10 @@ public class ListaVideoAdapter extends BaseAdapter {
 
     private void getDummyContent() {
         this.items =  new ArrayList<Video>();
-        Canal c1 = new Canal("Canalero01", R.drawable.ic_account_circle_black_18dp, 55000, "Federico L");
-        Canal c2 = new Canal("JulianJuega", R.drawable.ic_account_circle_black_18dp, 25000, "JJulian");
-        Canal c3 = new Canal("ESPN", R.drawable.ic_account_circle_black_18dp, 1500, "ESPN Network");
-        Canal c4 = new Canal("NBA", R.drawable.ic_account_circle_black_18dp, 155000, "NBA");
+        Canal c1 = new Canal("Canalero01","Canalero01", R.drawable.ic_account_circle_black_18dp, 55000, "Federico L");
+        Canal c2 = new Canal("JulianJuega", "JulianJuega", R.drawable.ic_account_circle_black_18dp, 25000, "JJulian");
+        Canal c3 = new Canal("ESPN","ESPN", R.drawable.ic_account_circle_black_18dp, 1500, "ESPN Network");
+        Canal c4 = new Canal("NBA", "NBA", R.drawable.ic_account_circle_black_18dp, 155000, "NBA");
 
         Comentario[] comentarios = new Comentario[6];
         comentarios[0] = new Comentario("Hola mundo", new Date(), "Marcos");
@@ -82,9 +82,9 @@ public class ListaVideoAdapter extends BaseAdapter {
         items.add(new Video(c1, "Deportes", comentarios, "Mira esta atrapada, es increible lo que logr hacer!", convertedDates[0], "786+9443", "https://goo.gl/ccgW4i", "MIT", "Mira esta atrapada!", 100, 2, 5));
         items.add(new Video(c3, "Drama", comentarios, "Y si el mundo termina", convertedDates[1], "876786767", "https://goo.gl/JNIJXa", "MIT", "Y si el mundo termina!", 100, 7, 21));
         items.add(new Video(c3, "Drama", comentarios, "Tienes que ver esto!", convertedDates[2], "435555545", "https://goo.gl/MUay9i", "MIT", "Tienes que ver esto!", 100, 42, 55));
-        items.add(new Video(c4, "Musica", comentarios, "BEST DUNKS OF 2016", convertedDates[3], "423497799", "https://goo.gl/LcvFZ1", "MIT", "DUNK MIX 2016!", 1000, 12, 50));
+        items.add(new Video(c4, "Deportes", comentarios, "BEST DUNKS OF 2016", convertedDates[3], "423497799", "https://goo.gl/LcvFZ1", "MIT", "DUNK MIX 2016!", 1000, 12, 50));
         items.add(new Video(c2, "Comedia", comentarios, "No le mola la rocola", convertedDates[4], "763243777", "https://goo.gl/rRMH7Y", "MIT", "No le mola la rocola!", 10000, 20, 500));
-        items.add(new Video(c4, "Musica", comentarios, "Greatest Hits 1970s", convertedDates[5], "123745678", "https://goo.gl/lHu1YN", "MIT", "Greatest Hits 1970s!", 250, 13, 75));
+        items.add(new Video(c4, "Deportes", comentarios, "Greatest Hits 1970s", convertedDates[5], "123745678", "https://goo.gl/lHu1YN", "MIT", "Greatest Hits 1970s!", 250, 13, 75));
     }
 
     @Override

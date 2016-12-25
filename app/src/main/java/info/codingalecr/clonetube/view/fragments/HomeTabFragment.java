@@ -21,6 +21,7 @@ import info.codingalecr.clonetube.view.adapter.ListaVideoAdapter;
  * A simple {@link Fragment} subclass.
  */
 public class HomeTabFragment extends ListFragment {
+
     private Context mContext;
     private ListaVideoAdapter mVideoAdapter;
 

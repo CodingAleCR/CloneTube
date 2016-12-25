@@ -9,7 +9,10 @@ public class Canal {
      */
     private String identificador;
 
-
+    /**
+     * Nombre del actor
+     */
+    private String actor;
 
     /**
      * Nombre del canal
@@ -29,11 +32,12 @@ public class Canal {
     public Canal() {
     }
 
-    public Canal(String identificador, int idImagen, int seguidores, String usuario) {
+    public Canal(String actor, String identificador, int idImagen, int seguidores, String nombre) {
+        this.actor = actor;
         this.identificador = identificador;
         this.idImagen = idImagen;
+        this.nombre = nombre;
         this.seguidores = seguidores;
-        this.nombre = usuario;
     }
 
     public String getIdentificador() {
@@ -66,5 +70,13 @@ public class Canal {
 
     public void setIdImagen(int idImagen) {
         this.idImagen = idImagen;
+    }
+
+    public String getActor() {
+        return actor;
+    }
+
+    public void setActor(String actor) {
+        this.actor = actor;
     }
 }
