@@ -29,6 +29,7 @@ public class DetalleVideoActivity extends AppCompatActivity {
     private Video mVideo;
     private boolean detailsOn;
     private ListaComentariosAdapter mComentariosAdapter;
+    private ListaSmallVideoAdapter mVideosRelacionadosAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,23 +39,6 @@ public class DetalleVideoActivity extends AppCompatActivity {
         Util.getInstance().Initialize(getApplicationContext());
         mVideo = Util.getInstance().readVideoInfo("videoSeleccionado");
         detailsOn = false;
-
-        //Asignamos los videos relacionados al que tenemos en detalle
-        ListaSmallVideoAdapter videosRelacionadosAdapter =  new ListaSmallVideoAdapter(getApplicationContext(), R.layout.small_video_item);
-        ListView listaVideosRelacionados = (ListView) findViewById(R.id.listaVideosRelacionados);
-        if (listaVideosRelacionados != null) {
-            listaVideosRelacionados.setAdapter(videosRelacionadosAdapter);
-        }
-
-        //Asignamos los comentarios del video
-        mComentariosAdapter = new ListaComentariosAdapter(new ArrayList<Comentario>(Arrays.asList(mVideo.getComentarios())), getApplicationContext(), R.layout.comentario_item);
-        ListView listaComentarios = (ListView) findViewById(R.id.listaComentarios);
-        if (listaComentarios != null) {
-            listaComentarios.setAdapter(mComentariosAdapter);
-        }
-
-        Util.setListViewHeightBasedOnChildren(listaVideosRelacionados);
-        Util.setListViewHeightBasedOnChildren(listaComentarios);
 
         //Informacion del video
         //Seteando Titulo
@@ -110,6 +94,24 @@ public class DetalleVideoActivity extends AppCompatActivity {
         // Seteando subscripciones del canal
         TextView subscripciones = (TextView) findViewById(R.id.subscripciones);
         subscripciones.setText(mVideo.getCanal().getSeguidores()+" subscriptores");
+
+        //Asignamos los videos relacionados al que tenemos en detalle
+        mVideosRelacionadosAdapter =  new ListaSmallVideoAdapter(getApplicationContext(), R.layout.small_video_item);
+        ListView listaVideosRelacionados = (ListView) findViewById(R.id.listaVideosRelacionados);
+        if (listaVideosRelacionados != null) {
+            listaVideosRelacionados.setAdapter(mVideosRelacionadosAdapter);
+        }
+
+        //Asignamos los comentarios del video
+        mComentariosAdapter = new ListaComentariosAdapter(new ArrayList<Comentario>(Arrays.asList(mVideo.getComentarios())), getApplicationContext(), R.layout.comentario_item);
+        ListView listaComentarios = (ListView) findViewById(R.id.listaComentarios);
+        if (listaComentarios != null) {
+            listaComentarios.setAdapter(mComentariosAdapter);
+        }
+
+        //Se hace para no perder los scrolls por el uso de dos listviews
+        Util.setListViewHeightBasedOnChildren(listaVideosRelacionados);
+        Util.setListViewHeightBasedOnChildren(listaComentarios);
     }
 
     /**
@@ -121,14 +123,28 @@ public class DetalleVideoActivity extends AppCompatActivity {
         Snackbar.make(findViewById(R.id.titulo), msg, Snackbar.LENGTH_LONG).show();
     }
 
+    /**
+     * Método onClick() del boton de subscripcion rapida al canal del creador del video
+     * @param view
+     */
     public void onSubscribeClick(View view) {
         showSnackBar("Mediante este boton se puede subscribir al canal");
     }
 
+    /**
+     * Método onClick() del boton para ver el canal del creador del video
+     * @param view
+     */
     public void onCanalClick(View view) {
         showSnackBar("Mediante este boton se puede ir al detalle del canal");
     }
 
+    /**
+     * Método onClick() del boton de la descripcion, hace un toggle para esconder dicha
+     * descripcion de video u otra informacion del mismo.
+     *
+     * @param view
+     */
     public void onDropClick(View view) {
         ImageView mDropButton = (ImageView) view;
         RelativeLayout detalles = (RelativeLayout) findViewById(R.id.detallesVideo);

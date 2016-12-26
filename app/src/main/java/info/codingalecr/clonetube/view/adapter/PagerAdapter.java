@@ -14,6 +14,9 @@ import info.codingalecr.clonetube.view.fragments.HomeTabFragment;
  * Created by Alejandro on 12/24/2016.
  */
 public class PagerAdapter extends FragmentStatePagerAdapter{
+    /**
+     * Numero de Tabs que se manejara con el Adapter
+     */
     int mNumOfTabs;
 
     public PagerAdapter(FragmentManager fm, int NumOfTabs) {
@@ -23,7 +26,6 @@ public class PagerAdapter extends FragmentStatePagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
-        TextView titulo;
         switch (position) {
             case 0:
                 HomeTabFragment home = new HomeTabFragment();

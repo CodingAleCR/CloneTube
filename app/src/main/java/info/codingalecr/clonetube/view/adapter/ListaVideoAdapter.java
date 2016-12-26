@@ -43,6 +43,9 @@ public class ListaVideoAdapter extends BaseAdapter {
         getDummyContent();
     }
 
+    /**
+     * Método que proporciona contenido a la aplicacion como una demostracion de la misma.
+     */
     private void getDummyContent() {
         this.items =  new ArrayList<Video>();
         Canal c1 = new Canal("Canalero01","Canalero01", R.drawable.ic_account_circle_black_18dp, 55000, "Federico L");
@@ -89,7 +92,6 @@ public class ListaVideoAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        // Decremento en 1, para no contar el header view
         return items.size();
     }
 

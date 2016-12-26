@@ -25,7 +25,7 @@ public class DefaultTabFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_default_tab, container, false);
+        rootView = inflater.inflate(R.layout.fragment_default_tab, container, false);
         return rootView;
     }
 }

@@ -26,12 +26,26 @@ public class Util {
         return mInstance;
     }
 
+    /**
+     * Ésta clase necesita un contexto, que debido a la naturaleza del patrn Singleton podria
+     * brindarse en el método getInstance, sin embargo para evitar hacer varias referencias de
+     * Context se utiliza uno separado que solamente se llama al inicio, previo a la utilizacion
+     * de la clase.
+     * @param ctxt
+     */
     public void Initialize(Context ctxt){
         mContext = ctxt;
         //
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
     }
 
+    /**
+     * Escribe dentro del shared Preferences un objeto de cualquier tipo, en este caso es
+     * necesario solamente para Videos por lo que se denomina el método como writeVideoInfo
+     *
+     * @param key
+     * @param value
+     */
     public void writeVideoInfo(String key, Object value){
         SharedPreferences.Editor prefsEditor = mSharedPreferences.edit();
         Gson gson = new Gson();
@@ -40,6 +54,11 @@ public class Util {
         prefsEditor.commit();
     }
 
+    /**
+     * Realiza una lectura en el sharedPreferences de un objeto tipo Video.
+     * @param key
+     * @return
+     */
     public Video readVideoInfo(String key) {
         Gson gson = new Gson();
         String json = mSharedPreferences.getString(key, "");
@@ -47,6 +66,12 @@ public class Util {
         return mVideo;
     }
 
+    /**
+     * Éste método realiza un calculo sobre la altura que deberia tener un listview
+     * en el caso de que se utilicen varios en un mismo fragment/activity.
+     *
+     * @param listView
+     */
     public static void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null) {

@@ -41,12 +41,9 @@ public class HomeTabFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater,@Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_home_tab, container, false);
         this.mVideoAdapter = new ListaVideoAdapter(mContext, R.layout.video_item);
-        TextView titulo = (TextView) getActivity().findViewById(R.id.tituloPrincipal);
-        titulo.setText("Inicio");
 
-        return rootView;
+        return inflater.inflate(R.layout.fragment_home_tab, container, false);
     }
 
 
@@ -54,11 +51,23 @@ public class HomeTabFragment extends ListFragment {
         return R.layout.fragment_home_tab;
     }
 
+    /**
+     * Registra la interaccion de click con algun elemento en la lista de videos (Listview)
+     *
+     * @param l
+     * @param v
+     * @param position
+     * @param id
+     */
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         showDetails(position);
     }
 
+    /**
+     * Inicializa una actividad que mostrara el detalle de un video.
+     * @param position
+     */
     private void showDetails(int position) {
         Intent intent = new Intent();
         intent.setClass(getActivity(), DetalleVideoActivity.class);
