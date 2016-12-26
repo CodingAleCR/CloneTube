@@ -62,8 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/card_margin"
                 android:src="@drawable/ic_dots_vertical_grey600_24dp"
-                android:onClick="showPopup"
-                android:id="@+id/imageView"
+                android:id="@+id/accionVideoRelacionado"
                 android:foregroundGravity="center_horizontal"
                 android:layout_alignTop="@+id/vistas"
                 android:layout_alignParentEnd="true" />

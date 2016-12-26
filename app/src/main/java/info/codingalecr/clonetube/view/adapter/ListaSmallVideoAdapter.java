@@ -1,6 +1,7 @@
 package info.codingalecr.clonetube.view.adapter;
 
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -134,6 +135,15 @@ public class ListaSmallVideoAdapter extends BaseAdapter {
         // Seteando Vistas
         TextView vistas = (TextView) view.findViewById(R.id.vistas);
         vistas.setText(item.getVistas()+" vistas");
+
+        //Hacemos el onClick del boton de opciones
+        ImageView acciones = (ImageView) view.findViewById(R.id.accionVideoRelacionado);
+        acciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(v, "Has seleccionado los ajustes de un video relacionado", Snackbar.LENGTH_LONG).show();
+            }
+        });
 
         return view;
     }

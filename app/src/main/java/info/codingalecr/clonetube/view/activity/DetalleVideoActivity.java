@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -112,6 +113,16 @@ public class DetalleVideoActivity extends AppCompatActivity {
         //Se hace para no perder los scrolls por el uso de dos listviews
         Util.setListViewHeightBasedOnChildren(listaVideosRelacionados);
         Util.setListViewHeightBasedOnChildren(listaComentarios);
+
+        //Verificamos que existe dicha lista y creamos el onClick para cada video relacionado
+        if (listaVideosRelacionados != null) {
+            listaVideosRelacionados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    showSnackBar("Aqui irias al detalle del otro video");
+                }
+            });
+        }
     }
 
     /**
