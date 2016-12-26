@@ -5,27 +5,57 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
 import android.view.View;
+import android.widget.AbsListView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import info.codingalecr.clonetube.R;
+import info.codingalecr.clonetube.model.Comentario;
 import info.codingalecr.clonetube.model.Util;
 import info.codingalecr.clonetube.model.Video;
+import info.codingalecr.clonetube.view.adapter.ListaComentariosAdapter;
+import info.codingalecr.clonetube.view.adapter.ListaSmallVideoAdapter;
+import info.codingalecr.clonetube.view.adapter.ListaVideoAdapter;
 
 public class DetalleVideoActivity extends AppCompatActivity {
     private Video mVideo;
     private boolean detailsOn;
+    private ListaComentariosAdapter mComentariosAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_video);
+
         Util.getInstance().Initialize(getApplicationContext());
         mVideo = Util.getInstance().readVideoInfo("videoSeleccionado");
         detailsOn = false;
+
+        //Asignamos los videos relacionados al que tenemos en detalle
+        ListaSmallVideoAdapter videosRelacionadosAdapter =  new ListaSmallVideoAdapter(getApplicationContext(), R.layout.small_video_item);
+        ListView listaVideosRelacionados = (ListView) findViewById(R.id.listaVideosRelacionados);
+        if (listaVideosRelacionados != null) {
+            listaVideosRelacionados.setAdapter(videosRelacionadosAdapter);
+        }
+
+        //Asignamos los comentarios del video
+        mComentariosAdapter = new ListaComentariosAdapter(new ArrayList<Comentario>(Arrays.asList(mVideo.getComentarios())), getApplicationContext(), R.layout.comentario_item);
+        ListView listaComentarios = (ListView) findViewById(R.id.listaComentarios);
+        if (listaComentarios != null) {
+            listaComentarios.setAdapter(mComentariosAdapter);
+        }
+
+        Util.setListViewHeightBasedOnChildren(listaVideosRelacionados);
+        Util.setListViewHeightBasedOnChildren(listaComentarios);
+
         //Informacion del video
         //Seteando Titulo
         TextView titulo = (TextView) findViewById(R.id.titulo);
@@ -70,7 +100,7 @@ public class DetalleVideoActivity extends AppCompatActivity {
         Glide.with(imagenCanal.getContext()).load(mVideo.getCanal().getIdImagen()).into(imagenCanal);
 
         // Seteando Nombre del canal
-        TextView nombreCanal = (TextView) findViewById(R.id.nombreCanal);
+        TextView nombreCanal = (TextView) findViewById(R.id.nombreUsuario);
         nombreCanal.setText(mVideo.getCanal().getNombre());
 
         // Seteando Nombre del actor
@@ -113,15 +143,45 @@ public class DetalleVideoActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Método onClick() del boton de dislike al video
+     * @param view
+     */
     public void onThumbDownClick(View view) {
         showSnackBar("No te gusta el video");
     }
 
+    /**
+     * Método onClick() del boton de like de video
+     * @param view
+     */
     public void onThumbUpClick(View view) {
         showSnackBar("Te gusta el video");
     }
 
+    /**
+     * Método onClick() del boton de compartir video
+     * @param view
+     */
     public void onCompartirClick(View view) {
         showSnackBar("Con este boton compartes el video");
+    }
+
+    /**
+     * Método onClick() del boton de opciones en video
+     *
+     * @param v
+     */
+    public void showPopup(View v) {
+        showSnackBar("Aqui se mostrarian opciones para el usuario.");
+    }
+
+    /**
+     * Método onClick() del boton de comentarios en un comentario
+     *
+     * @param view
+     */
+    public void onComentarClick(View view) {
+        showSnackBar("Con este boton veras comentarios sobre el comentario el video");
     }
 }

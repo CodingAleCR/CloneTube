@@ -1,12 +1,16 @@
 package info.codingalecr.clonetube.view.adapter;
 
 import android.content.Context;
+import android.text.format.DateUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import java.util.List;
 
+import info.codingalecr.clonetube.R;
 import info.codingalecr.clonetube.model.Comentario;
 import info.codingalecr.clonetube.model.Video;
 
@@ -31,21 +35,42 @@ public class ListaComentariosAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return items.size();
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public Comentario getItem(int position) {
+        return items.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+    public View getView(int position, View view, ViewGroup parent) {
+        if (view == null) {
+            LayoutInflater inflater = (LayoutInflater) mContext
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.comentario_item, parent, false);
+        }
+
+        Comentario item = getItem(position);
+
+        // Seteando Titulo
+        TextView usuario = (TextView) view.findViewById(R.id.nombreUsuario);
+        usuario.setText(item.getUsuarioEmisor());
+
+        // Seteando Titulo
+        TextView cuerpo = (TextView) view.findViewById(R.id.cuerpoComentario);
+        cuerpo.setText(item.getCuerpo());
+
+        // Seteando Fecha Comentario
+        TextView tiempo = (TextView) view.findViewById(R.id.fechaComentario);
+        long now = System.currentTimeMillis();
+        tiempo.setText(DateUtils.getRelativeTimeSpanString(item.getFecha().getTime(), now, DateUtils.MINUTE_IN_MILLIS));
+
+        return view;
     }
 }

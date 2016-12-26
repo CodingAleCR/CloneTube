@@ -25,19 +25,19 @@ import info.codingalecr.clonetube.model.Video;
 /**
  * Created by Alejandro on 12/23/2016.
  */
-public class ListaVideoAdapter extends BaseAdapter {
+public class ListaSmallVideoAdapter extends BaseAdapter {
 
     private final Context mContext;
     private List<Video> items;
     private int mLayout;
 
-    public ListaVideoAdapter(Context c, int layout, List<Video> items) {
+    public ListaSmallVideoAdapter(Context c, int layout, List<Video> items) {
         mContext = c;
         this.items = items;
         this.mLayout = layout;
     }
 
-    public ListaVideoAdapter(Context c, int layout) {
+    public ListaSmallVideoAdapter(Context c, int layout) {
         mContext = c;
         this.mLayout = layout;
         getDummyContent();
@@ -110,7 +110,7 @@ public class ListaVideoAdapter extends BaseAdapter {
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) mContext
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.video_item, viewGroup, false);
+            view = inflater.inflate(R.layout.small_video_item, viewGroup, false);
         }
 
         Video item = getItem(position);
@@ -118,12 +118,6 @@ public class ListaVideoAdapter extends BaseAdapter {
         // Seteando Imagen
         ImageView imagen = (ImageView) view.findViewById(R.id.prevista);
         Glide.with(imagen.getContext()).load(item.getImagen()).into(imagen);
-
-        // Seteando Imagen del canal
-        ImageView imagenCanal = (ImageView) view.findViewById(R.id.canal);
-        if (imagenCanal != null) {
-            Glide.with(imagenCanal.getContext()).load(item.getCanal().getIdImagen()).into(imagenCanal);
-        }
 
         // Seteando Titulo
         TextView titulo = (TextView) view.findViewById(R.id.titulo);
@@ -137,12 +131,6 @@ public class ListaVideoAdapter extends BaseAdapter {
         TextView vistas = (TextView) view.findViewById(R.id.vistas);
         vistas.setText(item.getVistas()+" vistas");
 
-        // Seteando Fecha de subida
-        TextView tiempo = (TextView) view.findViewById(R.id.tiempoSubido);
-        if (tiempo != null) {
-            long now = System.currentTimeMillis();
-            tiempo.setText(DateUtils.getRelativeTimeSpanString(item.getFechaSubida().getTime(), now, DateUtils.MINUTE_IN_MILLIS));
-        }
         return view;
     }
 }

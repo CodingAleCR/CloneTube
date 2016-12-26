@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -70,12 +68,12 @@ public class MainActivity extends AppCompatActivity {
      * Establece la toolbar como action bar
      */
     private void setToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        final ActionBar ab = getSupportActionBar();
-        if (ab != null) {
-            ab.setDisplayHomeAsUpEnabled(true);
-        }
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        final ActionBar ab = getSupportActionBar();
+//        if (ab != null) {
+//            ab.setDisplayHomeAsUpEnabled(true);
+//        }
 
     }
 
@@ -85,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
      * @param msg Mensaje a proyectar
      */
     private void showSnackBar(String msg) {
-        Snackbar.make(findViewById(R.id.fab), msg, Snackbar.LENGTH_LONG).show();
+        Snackbar.make(findViewById(R.id.tituloPrincipal), msg, Snackbar.LENGTH_LONG).show();
     }
 
     @Override

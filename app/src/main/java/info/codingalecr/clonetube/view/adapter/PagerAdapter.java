@@ -1,9 +1,12 @@
 package info.codingalecr.clonetube.view.adapter;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.widget.TextView;
 
+import info.codingalecr.clonetube.R;
 import info.codingalecr.clonetube.view.fragments.DefaultTabFragment;
 import info.codingalecr.clonetube.view.fragments.HomeTabFragment;
 
@@ -20,7 +23,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
-
+        TextView titulo;
         switch (position) {
             case 0:
                 HomeTabFragment home = new HomeTabFragment();

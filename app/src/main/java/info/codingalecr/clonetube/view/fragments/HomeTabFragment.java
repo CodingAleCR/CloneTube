@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import info.codingalecr.clonetube.R;
 import info.codingalecr.clonetube.model.Util;
@@ -40,11 +41,12 @@ public class HomeTabFragment extends ListFragment {
     @Override
     public View onCreateView(LayoutInflater inflater,@Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-//
+        View rootView = inflater.inflate(R.layout.fragment_home_tab, container, false);
         this.mVideoAdapter = new ListaVideoAdapter(mContext, R.layout.video_item);
+        TextView titulo = (TextView) getActivity().findViewById(R.id.tituloPrincipal);
+        titulo.setText("Inicio");
 
-
-        return inflater.inflate(R.layout.fragment_home_tab, container, false);
+        return rootView;
     }
 
 
